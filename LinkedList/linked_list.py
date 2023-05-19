@@ -3,6 +3,7 @@ class Node:
         self.value = value
         self.next = None
 
+
 class LinkedList:
     def __init__(self, value):
         new_node = Node(value)
@@ -15,3 +16,4 @@ class LinkedList:
         while temp is not None:
             print(temp.value)
             temp = temp.next
+
