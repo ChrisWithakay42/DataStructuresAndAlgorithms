@@ -5,7 +5,7 @@ class Node:
 
 
 class LinkedList:
-    def __init__(self, value):
+    def __init__(self, value: Node):
         new_node = Node(value)
         self.head = new_node
         self.tail = new_node
@@ -16,4 +16,38 @@ class LinkedList:
         while temp is not None:
             print(temp.value)
             temp = temp.next
+
+    def append(self, value: Node) -> None:
+        """
+        Constant time O(1)
+        No matter how large the linked list is, the number of operations taken to execute append remains constant
+        """
+        new_node = Node(value)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+        self.length += 1
+
+    def pop(self) -> Node:
+        """
+        Linear time O(n)
+        An algorithm with a single loop that iterates through all n items in the worst case has a time complexity of O(n)
+        """
+        if self.length == 0:
+            return None
+        temp = self.head
+        prev = self.head
+        while temp.next:
+            prev = temp
+            temp = temp.next
+        self.tail = prev
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+        return temp
+
 
