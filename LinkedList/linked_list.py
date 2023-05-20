@@ -89,7 +89,7 @@ class LinkedList:
         A -> B -> C -> D -> None
         B -> C -> D -> None
 
-        Constant time O(n)
+        Constant time O(1)
         ...
         """
         if self.length == 0:
@@ -110,7 +110,7 @@ class LinkedList:
 
         Linear time O(n)
         """
-        if 0 > index >= self.length:
+        if not (0 <= index <= self.length):
             return None
         temp = self.head
         for _ in range(index):
@@ -125,6 +125,10 @@ class LinkedList:
         return False
 
     def insert(self, index: int, value: Optional):
+        """
+        A -> B -> C -> D -> None
+        A -> B -> C -> D -> None
+        """
         if not (0 <= index <= self.length):
             return False
         if index == 0:
@@ -171,3 +175,27 @@ class LinkedList:
             temp.next = before
             before = temp
             temp = after
+
+    def find_middle_node(self):
+        slow = self.head
+        fast = self.head
+
+        while fast is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+
+        return slow
+
+    def has_loop(self):
+        if not self.head and not self.head.next:
+            return False
+        slow = self.head
+        fast = self.head.next
+        while fast and fast.next:
+            if slow == fast:
+                return True
+            else:
+                slow = slow.next
+                fast = fast.next.next
+
+
