@@ -198,6 +198,9 @@ class LinkedList:
                 slow = slow.next
                 fast = fast.next.next
 
+    def reverse_between(self):
+        ...
+
 
 def find_kth_from_end(ll: LinkedList, k: int) -> Node | None:
     slow = ll.head
