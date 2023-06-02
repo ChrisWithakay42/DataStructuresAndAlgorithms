@@ -199,3 +199,16 @@ class LinkedList:
                 fast = fast.next.next
 
 
+def find_kth_from_end(ll: LinkedList, k: int) -> Node | None:
+    slow = ll.head
+    fast = ll.head
+    for _ in range(k):
+        if fast is None:
+            return None
+        fast = fast.next
+
+    while fast:
+        slow = slow.next
+        fast = fast.next
+
+    return slow
